@@ -452,7 +452,7 @@ local function toggleAutoFarm()
                         local targetPart = gingerbread.PrimaryPart or gingerbread:FindFirstChild("HumanoidRootPart")
                         if targetPart then
                             humanoidRootPart.CFrame = targetPart.CFrame + Vector3.new(0, 5, 0)
-                            wait(0.6)
+                            wait(1.2)
                         end
                     end
                 end
@@ -508,7 +508,7 @@ local function toggleAutoTeleport()
                 
                 local targetCFrame = CFrame.new(
                     COORDS_SPOT2.X,
-                    COORDS_SPOT2.Y - 1,
+                    COORDS_SPOT2.Y + 0,
                     COORDS_SPOT2.Z
                 )
                 humanoidRootPart.CFrame = targetCFrame
