@@ -9,6 +9,15 @@ end
 if not game:IsLoaded() then 
     game.Loaded:Wait() 
 end
+-- 🔥 ANTI AFK
+task.spawn(function()
+    local vu = game:GetService("VirtualUser")
+    Players.LocalPlayer.Idled:Connect(function()
+        vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+    end)
+end)
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -394,7 +403,7 @@ teleportBtn.MouseButton1Click:Connect(function()
         Text = "DONE!"
     }):Play()
     
-    wait(0.5)
+    wait(0.2)
     
     TweenService:Create(teleportBtn, TweenInfo.new(0.2), {
         BackgroundColor3 = Color3.fromRGB(80, 160, 255),
@@ -443,12 +452,12 @@ local function toggleAutoFarm()
                         local targetPart = gingerbread.PrimaryPart or gingerbread:FindFirstChild("HumanoidRootPart")
                         if targetPart then
                             humanoidRootPart.CFrame = targetPart.CFrame + Vector3.new(0, 5, 0)
-                            wait(1.5)
+                            wait(0.6)
                         end
                     end
                 end
                 
-                wait(2)
+                wait(1.7)
             end
         end)
     else
@@ -488,7 +497,7 @@ local function toggleAutoTeleport()
         
         teleportThread = task.spawn(function()
             while autoTeleportEnabled do
-                task.wait(30)
+                task.wait(60)
                 
                 local character = player.Character
                 if not character then
@@ -499,14 +508,14 @@ local function toggleAutoTeleport()
                 
                 local targetCFrame = CFrame.new(
                     COORDS_SPOT2.X,
-                    COORDS_SPOT2.Y + 1,
+                    COORDS_SPOT2.Y - 1,
                     COORDS_SPOT2.Z
                 )
                 humanoidRootPart.CFrame = targetCFrame
                 
                 print("Teleported to coordinates: X=" .. COORDS_SPOT2.X .. ", Y=" .. COORDS_SPOT2.Y .. ", Z=" .. COORDS_SPOT2.Z)
                 
-                wait(1)
+                wait(0.5)
             end
         end)
     else
@@ -590,7 +599,7 @@ local function toggleMinimize()
         })
         tween:Play()
         
-        wait(0.2)
+        wait(0.1)
         contentFrame.Visible = true
         shadow.Visible = true
         
